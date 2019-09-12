@@ -42,9 +42,9 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 ### Contracts Of WBTC
 
 - **MultiSigWalletWithDailyLimit：** 执行 DAO 管理交易，管理 DAO Members
-- **Members：** 负责查询与管理 Merchants 和 Custodian
-- **Factory：** 发起 Mint 与 Burn 的 Request
-- **Controller：** 执行 Mint WBTC 与 Burn WBTC，管理 Factory 与 Members 合约
+- **Members：** 查询与管理 Merchants 和 Custodian
+- **Factory：** 发起和确认 Mint 与 Burn 的 Request
+- **Controller：** 执行 Mint WBTC 与 Burn WBTC，管理 Factory 与 Members 合约与 WBTC 合约状态
 - **WBTC：** ERC20 Token
 
 ![avatar](./res/wbtc.svg)
@@ -57,7 +57,7 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 
 ![avatar](./res/multi-sig-wallet.svg)
 
-> Multi-Signature Wallets 中每个 owner 都只有一票，不含权重信息。PegZone 中 Oracle Module 是一个类似的包含权重的多签交易管理的实现。
+Multi-Signature Wallets 中每个 owner 都只有一票，不含权重信息。PegZone 中 `Oracle Module` 是一个类似的包含权重的多签交易管理的实现。
 
 ![avatar](./res/peggy.png)
 
@@ -66,13 +66,13 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 ### Governance
 
 所有托管人和商人都是DAO Member，但其他机构也可以作为 Member 加入，但没有 Custodian 或 Merchant 角色。
-- ##### 合约管理： Factory、Members
+- ##### 合约管理： Factory、Members、WBTC 状态
 - ##### 角色管理： Custodians、Merchants
 - ##### 成员管理： 两个多签钱包的 Owners
 
 ![avatar](./res/wbtc-dao.svg)
 
-> Factory 支持多个 Custodian，但 Members 只支持单一托管人，后期若要增加 Custodian 需更新 Controller 中的 Members 合约。
+Factory 支持多个 custodian，但 `Members` 合约只支持单一托管人，后期若要增加 custodian 需更新 `Controller` 合约中的 `Members` 合约。
 
 ---
 
@@ -103,7 +103,7 @@ Minting 是指创建新的 WBTC 的过程。必须由 `custodian` 完成，但�
 - Merchant 执行必要的 KYC/AML 程序，并获取用户的身份证明信息。
 - 用户和商家执行原子交换，或通过可信的方式交换 BTC 和 WBTC。用户收到 WBTC，Merchant 收到 BTC。
 
->Note：该部分由每个 merchant 单独实现。
+> Note：该部分由每个 merchant 单独实现。
 
 
 ![avatar](./res/minting-user.svg)
@@ -135,7 +135,7 @@ Burning 是指将 WBTC 兑换回 BTC，只有 `Merchant` 地址可以 burn WBTC�
 - Merchant 执行必要的 KYC/AML 程序，并获取用户的身份证明信息。
 - 用户和商家执行原子交换，或通过可信的方式交换 BTC 和 WBTC。用户收到 BTC，Merchant 收到 WBTC。
 
-> 注：该部分由每个 merchant 单独实现。
+> Note：该部分由每个 merchant 单独实现。
 
 ![avatar](./res/burnung-user.png)
 
