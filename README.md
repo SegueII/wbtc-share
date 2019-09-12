@@ -53,7 +53,7 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 
 ### Ethereum Multi-Signature Wallets
 
-`M of N` 多签钱包模型。N 为总数，M 为交易通过的签名个数。多签钱包合约中，每个 owner 都可以提交交易，交易提交后需要其他 owners 同意，当超过 Required 数量的 owner 同意后，任何一个 owner 都可以执行该交易。多签钱包合约 owners 的管理也是通过上述过程完成。
+`M of N` 多签钱包模型。N 为总数，M 为交易通过的签名个数。多签钱包合约中，每个 owner 都可以提交交易，交易提交后需要其他 owners 同意，当超过 required 数量的 owner 同意后，任何一个 owner 都可以执行该交易。多签钱包合约 owners 的管理也是通过上述过程完成。
 
 ![avatar](./res/multi-sig-wallet.svg)
 
