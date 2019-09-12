@@ -33,8 +33,9 @@
 
 ### Custodian wallet setup
 
-Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`，所有密钥由 `custodian` 控制。钱包只能发送到链上列入白名单的商家地址。所有 mint 和 burn 交易预计将在提交给 custodian 的48小时内完成。如果有多个 Custodian，则单个 Custodian 的 BTC 钱包可能没有足够的资金来兑换所有待处理的 WBTC。
-以上设计用于多 Custodian 情景，但目前 WBTC 只有 Bitgo 一个 Custodian，且其钱包合约代码尚未公开，上述内容暂时无法验证。
+Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`，所有密钥由 `custodian` 控制。钱包只能发送到链上列入白名单的商家地址。所有 mint 和 burn 交易预计将在提交给 custodian 的48小时内完成。如果有多个 Custodian，则单个 Custodian 的 BTC 钱包可能没有足够的资金来兑换所有待处理的 WBTC。  
+
+以上设计用于多 custodian 情景，但目前 WBTC 只有 BitGo 一个 custodian，且其钱包合约代码尚未公开，上述内容暂时无法验证。
 
 ---
 
