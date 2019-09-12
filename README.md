@@ -29,7 +29,7 @@
     WBTC 的持有者。用户可以像以太坊生态系统中任意其他 ERC20 Token 一样交易 WBTC。用户不参与 WBTC 的 Mint 与 Burn 过程。
 
 - ##### WBTC DAO member - 成员
-    `合约变更`、`保管人和商家的变动`由 `multi-signature wallets` 控制。机构作为 Member，多签钱包的 owners 由机构控制。
+    `合约变更`、`托管人和商家的变动`由 `multi-signature wallets` 控制。机构作为 Member，多签钱包的 owners 由机构控制。
 
 ### Custodian wallet setup
 
