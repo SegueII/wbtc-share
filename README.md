@@ -72,7 +72,7 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 
 ![avatar](./res/wbtc-dao.svg)
 
-> Factory 支持多个 Custodian，但 Members 只支持单一托管人，后期若要增加 Custodian 需更新 Controller 中的 Member 合约。
+> Factory 支持多个 Custodian，但 Members 只支持单一托管人，后期若要增加 Custodian 需更新 Controller 中的 Members 合约。
 
 ---
 
