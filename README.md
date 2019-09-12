@@ -20,22 +20,21 @@
 ### Key Roles
 
 - ##### Custodian - 托管人
-    持有资产的机构或当事人。在 WBTC 中由 BitGo 保管资产。==Custodian 负责 `mint WBTC`==。
+    持有资产的机构或当事人。在 WBTC 中由 BitGo 保管资产。Custodian 负责 `mint WBTC`。
 
 - ##### Merchant - 商家
-    负责 mint 和  burn WBTC 的机构。Merchant 在 WBTC 的分发中扮演着十分重要的角色。每个 Merchant 都可以==发起 `mint WBTC` 和 `burn WBTC` 请求==。
+    负责 mint 和  burn WBTC 的机构。Merchant 在 WBTC 的分发中扮演着十分重要的角色。每个 Merchant 都可以发起 `mint WBTC` 和 `burn WBTC` 请求。
 
 - ##### User - 用户
-    WBTC 的持有者。用户可以像以太坊生态系统中任意其他 ERC20 Token 一样交易 WBTC。==用户不参与 WBTC 的 Mint 与 Burn 过程==。
+    WBTC 的持有者。用户可以像以太坊生态系统中任意其他 ERC20 Token 一样交易 WBTC。用户不参与 WBTC 的 Mint 与 Burn 过程。
 
 - ##### WBTC DAO member - 成员
-    `合约变更`、`保管人和商家的变动`由 `multi-signature wallets` 控制。==机构作为 Member，多签钱包的 owners 由机构控制==。
+    `合约变更`、`保管人和商家的变动`由 `multi-signature wallets` 控制。机构作为 Member，多签钱包的 owners 由机构控制。
 
 ### Custodian wallet setup
 
-Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`，所有密钥由 `custodian` 控制。钱包只能发送到链上列入白名单的商家地址。所有 mint 和 burn 交易预计将在提交给 custodian 的48小时内完成。如果有多个 Custodian，则单个 Custodian 的 BTC 钱包可能没有足够的资金来兑换所有待处理的 WBTC。  
-
-==以上设计用于多 Custodian 情景，但目前 WBTC 只有 Bitgo 一个 Custodian，且其钱包合约代码尚未公开，上述内容暂时无法验证。==
+Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`，所有密钥由 `custodian` 控制。钱包只能发送到链上列入白名单的商家地址。所有 mint 和 burn 交易预计将在提交给 custodian 的48小时内完成。如果有多个 Custodian，则单个 Custodian 的 BTC 钱包可能没有足够的资金来兑换所有待处理的 WBTC。
+以上设计用于多 Custodian 情景，但目前 WBTC 只有 Bitgo 一个 Custodian，且其钱包合约代码尚未公开，上述内容暂时无法验证。
 
 ---
 
@@ -78,7 +77,7 @@ Custodian 将为所有商家提供汇总钱包。钱包使用 `multi-signature`�
 
 ### Minting
 
-Minting 是指创建新的 WBTC 的过程。必须由 `custodian` 完成，但需要由 `merchant` `发起(initiate)`。==Minting 不涉及用户。它是 **merchant** 和 **custodian** 之间完成的一组交易。==
+Minting 是指创建新的 WBTC 的过程。必须由 `custodian` 完成，但需要由 `merchant` `发起(initiate)`。Minting 不涉及用户。它是 **merchant** 和 **custodian** 之间完成的一组交易。
 
 ![avatar](./res/minting.svg)
 
@@ -112,7 +111,7 @@ Minting 是指创建新的 WBTC 的过程。必须由 `custodian` 完成，但�
 
 ### Burning
 
-Burning 是指将 WBTC 兑换回 BTC，只有 `Merchant` 地址可以 burn WBTC。Merchant 在合约中调用 burn 函数并传入数量，merchant 账户中相应数量的 WBTC 将会被扣除，并且 WBTC 总量会相应减少。==Minting 也不涉及用户。它是 **merchant** 和 **custodian** 之间完成的一组交易。==
+Burning 是指将 WBTC 兑换回 BTC，只有 `Merchant` 地址可以 burn WBTC。Merchant 在合约中调用 burn 函数并传入数量，merchant 账户中相应数量的 WBTC 将会被扣除，并且 WBTC 总量会相应减少。Minting 也不涉及用户。它是 **merchant** 和 **custodian** 之间完成的一组交易。
 
 ![avatar](./res/burning.svg)
 
@@ -139,7 +138,7 @@ Burning 是指将 WBTC 兑换回 BTC，只有 `Merchant` 地址可以 burn WBTC�
 
 ![avatar](./res/burnung-user.png)
 
-#### Atomic Swap ==( HTLC => WBTC & BTC )==
+#### Atomic Swap ( HTLC => WBTC & BTC )
 
 Atomic swaps can be used between merchants and users in order to exchange WBTC and BTC. If the user would like to receive WBTC or BTC more quickly, a trusted method of exchange could also be done through the merchants.
 Once KYC is completed, the steps for users to atomically swap BTC for WBTC with the merchant are:
@@ -151,11 +150,11 @@ Once KYC is completed, the steps for users to atomically swap BTC for WBTC with 
 - If the user does not claim the WBTC within the expiration time, the transaction does not go through and the user can claim the BTC back
 
 Some important things to note here:
-- In order to deploy the atomic swap contract and send WBTC to it, there are transaction fees involved. Hence, the user will have to pay an ==atomic swap fee== before initiating a swap.
-- Atomic swaps take time and multiple transactions on both the BTC and ETH chain. The user may have the option of doing a trusted swap in which BTC is transferred to the merchant address and after 6 confirmations on the bitcoin network, the merchant sends WBTC to the user. ==This involves trust in the merchant, but it is quicker and cheaper.==
+- In order to deploy the atomic swap contract and send WBTC to it, there are transaction fees involved. Hence, the user will have to pay an atomic swap fee before initiating a swap.
+- Atomic swaps take time and multiple transactions on both the BTC and ETH chain. The user may have the option of doing a trusted swap in which BTC is transferred to the merchant address and after 6 confirmations on the bitcoin network, the merchant sends WBTC to the user. This involves trust in the merchant, but it is quicker and cheaper.
 
 #### Fees
-Transfers of WBTC between users will have no cost apart from ==network fees==. There are three ways in which different parties in the network can earn fees:
+Transfers of WBTC between users will have no cost apart from network fees. There are three ways in which different parties in the network can earn fees:
 - **Custodian fees:** This is taken by the custodian at the time when a merchant mints or burns wrapped tokens.
 - **Merchant fees:** This is taken by the merchant who the user exchanges wrapped tokens with for the asset.
 
